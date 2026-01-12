@@ -86,7 +86,7 @@ The goal of Wanderlust is to build a **scalable, secure, and user-friendly trave
 ---
 
 ## 🧩 System Architecture (MVC)
-
+```
 Wanderlust/
 │
 ├── models/ # Mongoose schemas (Data layer)
@@ -98,8 +98,7 @@ Wanderlust/
 ├── app.js # Application entry point
 └── README.md
 
-yaml
-Copy code
+```
 
 ✔ Separation of concerns  
 ✔ Maintainable & scalable structure  
