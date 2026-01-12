@@ -30,8 +30,10 @@ main()
         console.log(err);
     });
 
-async function main()   {
-    await mongoose.connect(dbUrl);
+async function main() {
+    await mongoose.connect(dbUrl, {
+        dbName: "wanderlust",
+    });
 }
 
 app.set("view engine", "ejs");
@@ -43,13 +45,14 @@ app.use(express.static(path.join(__dirname,"/public")));
 
 const store = MongoStore.create({
     mongoUrl: dbUrl,
+    dbName: "wanderlust",
     crypto: {
         secret: process.env.SECRET,
     },
-    touchAfter: 24 * 3600, 
+    touchAfter: 24 * 3600,
 });
 
-store.on("error", () =>  {
+store.on("error", (err) => {
     console.log("ERROR in MONGO SESSION STORE", err);
 });
 
@@ -57,13 +60,18 @@ const sessionOptions = {
     store,
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie:  {
         expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
         maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true,
     },
 };
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+    console.log(`server listening on port ${PORT}`);
+});
 
 /* app.get("/", (req, res) =>  {
     res.send("Hi i am root");
