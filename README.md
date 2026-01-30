@@ -10,6 +10,9 @@ This project demonstrates **end-to-end web development skills**, including backe
 🔗 GitHub Repository:  
 https://github.com/AnjaliKumari-03/Wanderlust
 
+Live link: 
+https://wanderlust-zgda.onrender.com/listings
+
 ---
 
 ## 🎯 Project Objective
